@@ -1,1 +1,60 @@
-aaa
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <title>Marked in the browser</title>
+</head>
+<body>
+<h3>MARKDOWN EDITOR</h3>
+<button onclick="load()">Load</button><input id="myFile" type="file"/>
+<button onclick="update()">Update</button>
+<button onclick="download()">Download</button>
+<script>
+function load() {
+var file = document.getElementById("myFile").files[0];
+var reader = new FileReader();
+reader.onload = function (e) {
+    var textArea = document.getElementById("md");
+    textArea.value = e.target.result;
+};
+reader.readAsText(file);
+}
+
+function update() {
+var md = document.getElementById("md").value;
+  document.getElementById("content").innerHTML = marked(md);
+}
+
+function download(){
+    var text = document.getElementById("md").value;
+    text = text.replace(/\n/g, "\r\n"); // To retain the Line breaks.
+    var blob = new Blob([text], { type: "text/plain"});
+    var anchor = document.createElement("a");
+    anchor.download = "out.txt";
+    anchor.href = window.URL.createObjectURL(blob);
+    anchor.target ="_blank";
+    anchor.style.display = "none"; // just to be safe!
+    document.body.appendChild(anchor);
+    anchor.click();
+    document.body.removeChild(anchor);
+ }
+ 
+</script><hr>
+
+<table><tr><td style="vertical-align: top;">
+  <textarea id="md" rows="40" cols="50" style="overflow:scroll;">
+### write here
+</textarea></td><td style="vertical-align: top;">
+ <div id="content"></div></td>
+ </tr></table>
+ 
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+  var md = document.getElementById('md').innerHTML
+    document.getElementById('content').innerHTML =
+      marked(md);
+  </script>
+ 
+</body>
+</html>
+
