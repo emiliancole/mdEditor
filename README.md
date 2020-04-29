@@ -1,4 +1,4 @@
-# mdEditor v01
+# mdEditor v02
 A Markdown Online Editor based on marked.js
 
 1. [Choose File] to select a previously saved md file or write in the textarea.
