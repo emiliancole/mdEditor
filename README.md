@@ -1,5 +1,6 @@
 # mdEditor v02
 A Markdown Online Editor based on marked.js
+[demo](https://emiliancole.github.io/mdeditor/)
 
 1. [Choose File] to select a previously saved md file or write in the textarea.
 2. [Load] to open the selected md file in the textarea.
